@@ -57,10 +57,6 @@ int main(int argc, char *argv[]) {
   int chunckSize = atoi(argv[3]);
   /****************************************************************************/
 
-
-
-
-
   /******************** Create array up to Nth Prime **************************/
   // initialize the array from 2 -> nThPrimeNumber
   int arrayPrime[nthPrime - 1];
@@ -70,6 +66,7 @@ int main(int argc, char *argv[]) {
     startNum++;
   }
   /****************************************************************************/
+
   ///** DISPLAY THE ARRAY THAT WAS JUST CREATED
   //---------------------------------------------------------->
   int arrayLength = sizeof(arrayPrime)/sizeof(arrayPrime[0]);
@@ -86,9 +83,38 @@ int main(int argc, char *argv[]) {
   printf("%s\n", "");
   printf("%s\n", "");
   //---------------------------------------------------------->
-
   // */
 
+  struct work* group;
+  group = (struct work*)malloc(numOfWorks*sizeof(struct work));
+
+  int remainingNumbers = arrayLength;
+  int lastGroupIndex = arrayLength % chunckSize; // Numbers to index by in the last work group thats necessary
+  for(size_t i = 0; i < numOfWorks; i++){
+    int minValue, maxValue;
+    if(i == 0){
+      /* First Step
+        - minValue index = 0
+        - maxValue index = chunckSize - 1 //This is to fic the offset of arrays
+        */
+      minValue = 0;
+      maxValue = chunckSize - 1;
+
+      group[i].min = minValue;
+      group[i].max = maxValue;
+      // Since you already gave chunckSize subtract it from remainingNumbers
+      remainingNumbers -= chunckSize;
+    } else{
+      /* if(remainingNumbers < chunckSize)
+        - the amount we increment the previous max to the new min will be by
+        the amount of remaning numbers
+        */
+
+      /* if()
+      */
+    }
+
+  }
 
 
   /** READ TO FIND OUT WHAT IM DOING
