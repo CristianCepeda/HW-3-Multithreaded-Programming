@@ -1,0 +1,67 @@
+/* PROGRAM NOTES
+  ******************************** VERSION 2  *********************************
+  DONE
+  1. Validate the command line inputs
+  2. Master thread reads the inputs from the command line
+  3. Then initializes the global array from 0 -> n
+  4. Create work packets
+  5. Start threads
+      - When we start the threads each thread will call the same workMethod
+
+  The three command line parameters
+    - n: Primes up to this #
+    - p: # of threads
+    - c: size of each chunk
+
+  - Master thread dictates work to slave threads. Each slave thread waits for
+  work does the work and comes back for more until there is no more work.
+
+  - Master should only loop through array that it manages from k=2 to sqrt(n).
+
+  - Master and slave threads should communicate via conditional variables.
+
+  *** Important need to know this so that we can create Classical Producer-Consumer Problem ***
+  - Keep a ready queue with the list of threads from (0 to p-1) that are ready
+  for more work.
+
+  - The program should also keep a list of data structures, one for each
+  slave thread.
+
+
+  //                Notes on Producer-Consumer Implementation
+  //--------------------------------------------------------------------------->
+  - Start from slide 24 at this URL
+  - https://people.cs.pitt.edu/~melhem/courses/xx45p/pthread.pdf
+
+
+  //                Notes on Producer-Consumer Implementation
+  //--------------------------------------------------------------------------->
+  - Start from slide 15 at this URL
+  - https://people.cs.pitt.edu/~melhem/courses/xx45p/pthread.pdf
+
+
+  //                     Notes on Condition Variables
+  //--------------------------------------------------------------------------->
+  - they allow threads to synchronize based upon the actual data value;
+  - With condition variables, the thread sleeps and waits on the condition variable;
+  - A condition variable is always used in conjunction with a mutex.
+
+  - Start from slide 17 at this URL
+  - https://people.cs.pitt.edu/~melhem/courses/xx45p/pthread.pdf
+
+
+  //                     Explanation of pthread_create
+  //--------------------------------------------------------------------------->
+  int pthread_create (     thread_id,          thread_attributes,             point_to_function, argument_for_function)
+  int pthread_create (pthread_t *tid, const pthread_attr_t *attr, void*(*start_rountine)(void*),             void *arg)
+
+  - returns the ID of the new thread via the tid argument
+  - the attr parameter is used to set thread attributes, NULL as default
+  - the start-routine is the C routine that the thread will start executing once it
+  is created
+  - a single argument may be passed to start_routine via arg. it must be passed by
+  reference as a pointer cast of type void. You can use a data structure if you
+  want to pass multiple arguments
+  //--------------------------------------------------------------------------->
+
+*/
